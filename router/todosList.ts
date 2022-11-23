@@ -18,8 +18,9 @@ router.post('/todo',(req,res,next)=>{
     res.status(201).json({message:'Added to todo',todo:todos})
 })
 
-router.put('/todo:todoId',(req,res,next)=>{
+router.put('/todo/:todoId',(req,res,next)=>{
     const tid=req.params.todoId;
+    console.log(tid);
     const todoIndex=todos.findIndex((todoItem)=>todoItem.id===tid);
 
     if(todoIndex >= 0){
@@ -29,7 +30,7 @@ router.put('/todo:todoId',(req,res,next)=>{
     res.status(404).json({message:'Could not find the ID'})
 })
 
-router.delete('/todo:todoId',(req,res,next)=>{
+router.delete('/todo/:todoId',(req,res,next)=>{
     const tid=req.params.todoId;
     todos=todos.filter(todoItem=>todoItem.id!==tid) ;
     res.status(200).json({message:'Delete the item',todo:todos})
